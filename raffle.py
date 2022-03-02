@@ -20,7 +20,7 @@ while fff == True:
 aaa = True
 while aaa == True:
     try:
-        value = int(input(f"What is the value of the {prize}? (do not input the $ sign) "))
+        value = float(input(f"What is the value of the {prize}? (do not input the $ sign) "))
         aaa = False
     except ValueError:
         print("Please input a valid integer")
