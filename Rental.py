@@ -18,6 +18,7 @@ while get_vehicles == True:
         get_vehicles = False
         get_name = False
     else:
+        # Shows list of vehicles, as well as if any of the cars are currently unavailable
         print("The vehicles are:")
         for i in range(0, 9):
             print(f"{i+1}. {vehicles[i][0]} ({vehicles[i][1]}) {unavailable[i-1]}")
@@ -25,16 +26,21 @@ while get_vehicles == True:
         get_name = True
     while get_input == True:
         try:
+            # Get the requested car
             book = int(input("Which vehicle would you like to book? (type 0 to end the process)"))
             if book > 9 or book < 0:
+                # Checking for a valid integer
                 print("Please enter a valid integer from 0-9")
             elif book == 0:
+                # Disabling all loops in order to end the process
                 get_input = False
                 get_vehicles = False
                 get_name = False
             elif unavailable[book - 2] == "- unavailable":
+                # Checking that the car is available
                 print("** That car is already booked. Please choose another. **")
             elif book:
+                # Confirms what vehicles was booked
                 get_input = False
                 unavailable[book - 2] = "- unavailable"
                 bookings += 1
@@ -45,6 +51,7 @@ while get_vehicles == True:
         except ValueError:
              print("Please enter a valid integer from 0-9")    
     while get_name == True:
+        # Gets name from user
         name = input("Please enter your name")
         if name:
             if name.isalpha():
@@ -53,11 +60,13 @@ while get_vehicles == True:
                     print(f"Thank you {name}")
                     names.append(name)
                 else:
+                    # Checking the person hasn't already booked a car
                     print("One car per person please")
             else:
                 print("Please enter a valid name")
         else:
             print("Please enter a valid name")
+# Summary
 print("Daily Summary")
 if len(names) == 0:
     print("No cars hired today")
